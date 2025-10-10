@@ -12,145 +12,308 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background: #0f0f23;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            opacity: 0.85;
+            z-index: -2;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.85; }
+            50% { opacity: 0.95; }
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.8), transparent);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(240, 147, 251, 0.8), transparent);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(118, 75, 162, 0.8), transparent);
+            top: 40%;
+            right: 10%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 30px) scale(0.9); }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 25px 0;
             animation: slideDown 0.6s ease;
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 32px;
+            font-weight: 800;
             color: white;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            letter-spacing: -1px;
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: white;
-            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 26px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         nav {
             display: flex;
-            gap: 30px;
+            gap: 35px;
         }
 
         nav a {
-            color: white;
+            color: rgba(255, 255, 255, 0.95);
             text-decoration: none;
-            font-weight: 500;
-            transition: transform 0.3s ease;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         nav a:hover {
             transform: translateY(-2px);
+            color: white;
         }
 
         .hero {
             text-align: center;
-            padding: 60px 0;
+            padding: 80px 0 60px;
             animation: fadeIn 1s ease;
         }
 
         h1 {
-            font-size: 56px;
+            font-size: 68px;
             color: white;
             margin-bottom: 20px;
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .subtitle {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 40px;
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 50px;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .payment-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 50px;
+            max-width: 540px;
             margin: 0 auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: scaleIn 0.6s ease;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            animation: scaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.08), transparent);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 600;
-            font-size: 14px;
+            margin-bottom: 10px;
+            color: #1a1a2e;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         input, select {
             width: 100%;
-            padding: 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            padding: 16px 18px;
+            border: 2px solid #e8e8f0;
+            border-radius: 14px;
             font-size: 16px;
             transition: all 0.3s ease;
+            background: white;
+            color: #1a1a2e;
+            font-weight: 500;
         }
 
         input:focus, select:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
+            transform: translateY(-2px);
+        }
+
+        input::placeholder {
+            color: #a0a0b8;
         }
 
         .card-details {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 15px;
+            gap: 18px;
         }
 
         .pay-button {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-top: 15px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pay-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .pay-button:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .pay-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
         }
 
         .pay-button:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
+        }
+
+        .pay-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .button-text {
+            position: relative;
+            z-index: 1;
         }
 
         .security-badge {
@@ -158,54 +321,89 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin-top: 20px;
-            color: #666;
-            font-size: 14px;
+            margin-top: 25px;
+            color: #6b6b80;
+            font-size: 13px;
+            font-weight: 600;
         }
 
         .lock-icon {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 80px;
-            padding-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 100px;
+            padding-bottom: 80px;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px 35px;
+            border-radius: 24px;
             color: white;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
 
         .feature-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         .feature-card h3 {
-            margin-bottom: 10px;
-            font-size: 22px;
+            margin-bottom: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         @keyframes slideDown {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-30px);
             }
             to {
                 opacity: 1;
@@ -225,31 +423,151 @@
         @keyframes scaleIn {
             from {
                 opacity: 0;
-                transform: scale(0.9);
+                transform: scale(0.85) translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: scale(1) translateY(0);
             }
         }
 
         .success-message {
             display: none;
-            background: #4caf50;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
             color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
+            padding: 18px;
+            border-radius: 14px;
+            margin-top: 25px;
             text-align: center;
             animation: slideDown 0.4s ease;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
         }
 
         .success-message.show {
             display: block;
         }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 8px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            margin-left: 10px;
+        }
+
+        .spinner.show {
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        footer {
+            margin-top: 100px;
+            padding: 50px 0;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-content {
+            text-align: center;
+            color: white;
+        }
+
+        .footer-content p {
+            margin-bottom: 15px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 42px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .card-details {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .payment-card {
+                padding: 30px 25px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .orb {
+                filter: blur(40px);
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
     <div class="container">
         <header>
             <div class="logo">
@@ -271,35 +589,44 @@
                 <form id="paymentForm">
                     <div class="form-group">
                         <label for="amount">Amount</label>
-                        <input type="text" id="amount" placeholder="$0.00" required>
+                        <input type="text" id="amount" placeholder="$0.00" required title="Enter the payment amount, e.g., $100.00">
+                        <div class="error-message" id="amountError"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="cardName">Cardholder Name</label>
-                        <input type="text" id="cardName" placeholder="John Doe" required>
+                        <input type="text" id="cardName" placeholder="John Doe" required title="Enter the name as it appears on the card">
+                        <div class="error-message" id="cardNameError"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="cardNumber">Card Number</label>
-                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required title="Enter 16-digit card number">
+                        <div class="error-message" id="cardNumberError"></div>
                     </div>
 
                     <div class="card-details">
                         <div class="form-group">
                             <label for="expiry">Expiry Date</label>
-                            <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required>
+                            <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required title="Enter expiry date as MM/YY">
+                            <div class="error-message" id="expiryError"></div>
                         </div>
                         <div class="form-group">
                             <label for="cvv">CVV</label>
-                            <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+                            <input type="text" id="cvv" placeholder="123" maxlength="3" required title="3-digit security code on the back of the card">
+                            <div class="error-message" id="cvvError"></div>
                         </div>
                         <div class="form-group">
                             <label for="zip">ZIP</label>
-                            <input type="text" id="zip" placeholder="10001" maxlength="5" required>
+                            <input type="text" id="zip" placeholder="10001" maxlength="5" required title="Enter billing ZIP code">
+                            <div class="error-message" id="zipError"></div>
                         </div>
                     </div>
 
-                    <button type="submit" class="pay-button">Pay Now</button>
+                    <button type="submit" class="pay-button" id="payButton">
+                        <span class="button-text">Pay Now</span>
+                        <div class="spinner" id="spinner"></div>
+                    </button>
 
                     <div class="success-message" id="successMessage">
                         ✓ Payment processed successfully!
@@ -332,6 +659,17 @@
                 <p>Accept payments from 180+ countries and 135+ currencies</p>
             </div>
         </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2023 PayFlow. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#contact">Contact Us</a>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script>
@@ -339,8 +677,76 @@
         const expiryInput = document.getElementById('expiry');
         const cvvInput = document.getElementById('cvv');
         const zipInput = document.getElementById('zip');
+        const amountInput = document.getElementById('amount');
+        const cardNameInput = document.getElementById('cardName');
         const paymentForm = document.getElementById('paymentForm');
         const successMessage = document.getElementById('successMessage');
+        const payButton = document.getElementById('payButton');
+        const spinner = document.getElementById('spinner');
+        const buttonText = document.querySelector('.button-text');
+
+        const amountError = document.getElementById('amountError');
+        const cardNameError = document.getElementById('cardNameError');
+        const cardNumberError = document.getElementById('cardNumberError');
+        const expiryError = document.getElementById('expiryError');
+        const cvvError = document.getElementById('cvvError');
+        const zipError = document.getElementById('zipError');
+
+        function clearErrors() {
+            [amountError, cardNameError, cardNumberError, expiryError, cvvError, zipError].forEach(el => el.classList.remove('show'));
+        }
+
+        function showError(element, message) {
+            element.textContent = message;
+            element.classList.add('show');
+        }
+
+        function validateForm() {
+            clearErrors();
+            let isValid = true;
+
+            if (!amountInput.value || parseFloat(amountInput.value.replace('$', '')) <= 0) {
+                showError(amountError, 'Please enter a valid amount.');
+                isValid = false;
+            }
+
+            if (!cardNameInput.value.trim()) {
+                showError(cardNameError, 'Cardholder name is required.');
+                isValid = false;
+            }
+
+            const cardNumber = cardNumberInput.value.replace(/\s/g, '');
+            if (cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
+                showError(cardNumberError, 'Please enter a valid 16-digit card number.');
+                isValid = false;
+            }
+
+            const expiry = expiryInput.value;
+            if (!/^\d{2}\/\d{2}$/.test(expiry)) {
+                showError(expiryError, 'Please enter expiry date as MM/YY.');
+                isValid = false;
+            } else {
+                const [month, year] = expiry.split('/');
+                const currentYear = new Date().getFullYear() % 100;
+                const currentMonth = new Date().getMonth() + 1;
+                if (parseInt(month) < 1 || parseInt(month) > 12 || parseInt(year) < currentYear || (parseInt(year) === currentYear && parseInt(month) < currentMonth)) {
+                    showError(expiryError, 'Expiry date is invalid.');
+                    isValid = false;
+                }
+            }
+
+            if (cvvInput.value.length !== 3 || !/^\d+$/.test(cvvInput.value)) {
+                showError(cvvError, 'Please enter a valid 3-digit CVV.');
+                isValid = false;
+            }
+
+            if (zipInput.value.length !== 5 || !/^\d+$/.test(zipInput.value)) {
+                showError(zipError, 'Please enter a valid 5-digit ZIP code.');
+                isValid = false;
+            }
+
+            return isValid;
+        }
 
         cardNumberInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\s/g, '');
@@ -365,15 +771,36 @@
             e.target.value = e.target.value.replace(/\D/g, '');
         });
 
+        amountInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^\d.]/g, '');
+            if (value) {
+                e.target.value = '$' + value;
+            }
+        });
+
         paymentForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            successMessage.classList.add('show');
-            
+
+            if (!validateForm()) {
+                return;
+            }
+
+            payButton.disabled = true;
+            buttonText.textContent = 'Processing...';
+            spinner.classList.add('show');
+
             setTimeout(() => {
-                paymentForm.reset();
-                successMessage.classList.remove('show');
-            }, 3000);
+                successMessage.classList.add('show');
+                payButton.disabled = false;
+                buttonText.textContent = 'Pay Now';
+                spinner.classList.remove('show');
+
+                setTimeout(() => {
+                    paymentForm.reset();
+                    successMessage.classList.remove('show');
+                    clearErrors();
+                }, 3000);
+            }, 2000);
         });
     </script>
 </body>

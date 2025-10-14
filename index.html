@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PayFlow - Seamless Payment Solutions</title>
-   <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-     <div class="floating-shapes">
+    <div class="floating-shapes">
         <div class="shape"></div>
         <div class="shape"></div>
         <div class="shape"></div>
@@ -21,16 +21,52 @@
             </div>
             <nav>
                 <a href="#features">Features</a>
-                <a href="#pricing">Pricing</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="#history">History</a>
                 <a href="#contact">Contact</a>
             </nav>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </header>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#features" onclick="toggleMobileMenu()">Features</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="history.html">History</a>
+            <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+        </div>
 
         <div class="hero">
             <h1>Secure Payment Processing</h1>
             <p class="subtitle">Fast, secure, and reliable payment solutions for your business</p>
 
+            <!-- Transaction Summary Widget -->
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Today's Transactions</span>
+                    <span class="stat-value" id="todayCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Amount</span>
+                    <span class="stat-value" id="todayAmount">$0.00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Success Rate</span>
+                    <span class="stat-value" id="successRate">100%</span>
+                </div>
+            </div>
+
             <div class="payment-card">
+                <!-- Plan Selection Badge -->
+                <div class="selected-plan-badge" id="selectedPlanBadge" style="display: none;">
+                    <span class="plan-icon">🎯</span>
+                    <span class="plan-text">Professional Plan Active</span>
+                </div>
+
                 <form id="paymentForm">
                     <div class="form-group">
                         <label for="amount">Amount</label>
@@ -44,12 +80,14 @@
                         <div class="error-message" id="cardNameError"></div>
                     </div>
 
-                    <div class="form-group card-input-container">
-                        <label for="cardNumber">Card Number</label>
-                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required title="Enter 16-digit card number">
-                        <img id="cardLogo" src="" alt="Card Logo">
-                        <div class="error-message" id="cardNumberError"></div>
-                    </div>
+                    <div class="form-group">
+    <label for="cardNumber">Card Number</label>
+    <div class="card-input-container">
+        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required title="Enter 16-digit card number">
+        <img id="cardLogo" class="card-logo" src="" alt="">
+    </div>
+    <div class="error-message" id="cardNumberError"></div>
+</div>
 
                     <div class="card-details">
                         <div class="form-group">
@@ -69,10 +107,25 @@
                         </div>
                     </div>
 
+                    <!-- Save Card Option -->
+                    <div class="save-card-option">
+                        <input type="checkbox" id="saveCard">
+                        <label for="saveCard">Save card for future payments</label>
+                    </div>
+
                     <button type="submit" class="pay-button" id="payButton">
                         <span class="button-text">Pay Now</span>
                         <div class="spinner" id="spinner"></div>
                     </button>
+                    
+                    <div class="action-buttons">
+                        <a href="history.html" class="btn view-history">
+                            📊 Transaction History
+                        </a>
+                        <a href="pricing.html" class="btn view-pricing">
+                            💎 View Plans
+                        </a>
+                    </div>
 
                     <div class="success-message" id="successMessage">
                         ✓ Payment processed successfully!
@@ -85,6 +138,15 @@
                         256-bit SSL Encrypted & PCI Compliant
                     </div>
                 </form>
+            </div>
+
+            <!-- Recent Transactions Preview -->
+            <div class="recent-transactions-preview">
+                <h3>Recent Transactions</h3>
+                <div id="recentTransactionsList">
+                    <p class="no-transactions">No recent transactions</p>
+                </div>
+                <a href="history.html" class="view-all-link">View All Transactions →</a>
             </div>
         </div>
 
@@ -105,6 +167,46 @@
                 <p>Accept payments from anywhere in the world with multi-currency support.</p>
             </div>
         </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <div class="badge-item">
+                <img src="https://img.icons8.com/color/48/000000/verified-badge.png" alt="Verified">
+                <span>Verified Merchant</span>
+            </div>
+            <div class="badge-item">
+                <img src="https://img.icons8.com/?size=100&id=16232&format=png&color=000000" alt="SSL">
+                <span>SSL Secured</span>
+            </div>
+            <div class="badge-item">
+                <img src="https://img.icons8.com/color/48/000000/protect.png" alt="Protected">
+                <span>Fraud Protection</span>
+            </div>
+            <div class="badge-item">
+                <img src="https://img.icons8.com/color/48/000000/guarantee.png" alt="Guarantee">
+                <span>Money Back Guarantee</span>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section" id="contact">
+            <h2>Need Help?</h2>
+            <p>Our support team is available 24/7</p>
+            <div class="contact-options">
+                <a href="mailto:support@payflow.com" class="contact-card">
+                    <span class="contact-icon">📧</span>
+                    <span class="contact-text">support@payflow.com</span>
+                </a>
+                <a href="tel:+1234567890" class="contact-card">
+                    <span class="contact-icon">📞</span>
+                    <span class="contact-text">+1 (234) 567-890</span>
+                </a>
+                <a href="#" class="contact-card">
+                    <span class="contact-icon">💬</span>
+                    <span class="contact-text">Live Chat</span>
+                </a>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -117,8 +219,7 @@
             </div>
         </div>
     </footer>
-    </div>
-    <script src="index.js"></script>
 
+    <script src="index.js"></script>
 </body>
 </html>

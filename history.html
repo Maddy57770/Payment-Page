@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PayFlow — Transaction History</title>
+  <link rel="stylesheet" href="history.css"/>
+</head>
+<body>
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <a class="logo" href="index.html">
+        <div class="logo-icon">💳</div>
+        PayFlow
+      </a>
+      <nav>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <h1>Transaction History</h1>
+      <p class="subtitle">Browse, filter, export, and print your simulated payments</p>
+    </div>
+
+    <section class="controls">
+      <div class="filters">
+        <input type="search" id="q" placeholder="Search ID, cardholder, or last4…" />
+        <select id="brand">
+          <option value="">All Brands</option>
+          <option value="visa">Visa</option>
+          <option value="mastercard">Mastercard</option>
+          <option value="amex">AmEx</option>
+          <option value="discover">Discover</option>
+        </select>
+        <select id="status">
+          <option value="">All Status</option>
+          <option value="success">Success</option>
+        </select>
+        <input type="date" id="fromDate" />
+        <input type="date" id="toDate" />
+        <select id="sort">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="amountDesc">Amount high → low</option>
+          <option value="amountAsc">Amount low → high</option>
+          <option value="nameAsc">Cardholder A → Z</option>
+        </select>
+      </div>
+      <div class="actions">
+        <button class="btn export" id="exportCsv">Export CSV</button>
+        <button class="btn danger" id="clearAll">Clear All</button>
+      </div>
+    </section>
+
+    <section class="history-card">
+      <div id="emptyState" class="empty-state">
+        <div class="empty-emoji">🧾</div>
+        <h3>No transactions yet</h3>
+        <p>Make a payment on the home page to see it appear here.</p>
+        <a href="index.html" class="btn primary">Make a Payment</a>
+      </div>
+
+      <div class="table-wrap" id="tableWrap" hidden>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Card</th>
+              <th>Cardholder</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="receiptModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 id="modalTitle">Payment Receipt</h3>
+        <button class="icon-btn" id="closeModal" aria-label="Close">✖</button>
+      </div>
+      <div class="modal-body" id="receiptBody">
+        <!-- Filled dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn" id="printReceipt">Print</button>
+        <button class="btn" id="copyId">Copy ID</button>
+        <button class="btn" id="closeFooter">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 PayFlow. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="index.html#privacy">Privacy Policy</a>
+        <a href="index.html#terms">Terms of Service</a>
+        <a href="index.html#support">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="history.js"></script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans - PayFlow</title>
+    <link rel="stylesheet" href="pricing.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-sphere sphere-1"></div>
+        <div class="gradient-sphere sphere-2"></div>
+        <div class="gradient-sphere sphere-3"></div>
+        <div class="floating-icons">
+            <span class="float-icon">💳</span>
+            <span class="float-icon">💰</span>
+            <span class="float-icon">🚀</span>
+            <span class="float-icon">⚡</span>
+            <span class="float-icon">🔒</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo" onclick="window.location.href='index.html'">
+                <div class="logo-icon">💳</div>
+                PayFlow
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="#" class="active">Pricing</a>
+                <a href="history.html">History</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="btn-get-started">Get Started</button>
+        </header>
+
+        <!-- Hero Section -->
+        <div class="pricing-hero">
+            <div class="badge">💎 TRANSPARENT PRICING</div>
+            <h1 class="hero-title">Choose Your Perfect Plan</h1>
+            <p class="hero-subtitle">
+                Start free and scale as you grow. No hidden fees, no surprises.
+            </p>
+            
+            <!-- Billing Toggle -->
+            <div class="billing-toggle">
+                <span class="toggle-label">Monthly</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="billingToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">
+                    Yearly
+                    <span class="save-badge">Save 20%</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="pricing-grid">
+            <!-- Starter Plan -->
+            <div class="pricing-card" data-plan="starter">
+                <div class="card-glow"></div>
+                <div class="plan-header">
+                    <h3 class="plan-name">Starter</h3>
+                    <p class="plan-description">Perfect for small businesses</p>
+                    <div class="plan-price">
+                        <span class="currency">$</span>
+                        <span class="price monthly-price">0</span>
+                        <span class="price yearly-price" style="display:none">0</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="price-note">Free forever</p>
+                </div>
+                
+                <ul class="features-list">
+                    <li><span class="check-icon">✓</span> Up to 100 transactions/month</li>
+                    <li><span class="check-icon">✓</span> Basic payment processing</li>
+                    <li><span class="check-icon">✓</span> Standard support</li>
+                    <li><span class="check-icon">✓</span> Mobile app access</li>
+                    <li><span class="check-icon">✓</span> Real-time analytics</li>
+                    <li class="disabled"><span class="x-icon">✗</span> Advanced fraud protection</li>
+                    <li class="disabled"><span class="x-icon">✗</span> Custom branding</li>
+                    <li class="disabled"><span class="x-icon">✗</span> API access</li>
+                </ul>
+                
+                <button class="plan-btn btn-secondary">Start Free</button>
+                <p class="plan-footer">No credit card required</p>
+            </div>
+
+            <!-- Professional Plan (Most Popular) -->
+            <div class="pricing-card featured" data-plan="professional">
+                <div class="popular-badge">
+                    <span>🔥 MOST POPULAR</span>
+                </div>
+                <div class="card-glow"></div>
+                <div class="plan-header">
+                    <h3 class="plan-name">Professional</h3>
+                    <p class="plan-description">For growing businesses</p>
+                    <div class="plan-price">
+                        <span class="currency">$</span>
+                        <span class="price monthly-price">29</span>
+                        <span class="price yearly-price" style="display:none">23</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="price-note monthly-note">Billed monthly</p>
+                    <p class="price-note yearly-note" style="display:none">$276/year (Save $72)</p>
+                </div>
+                
+                <ul class="features-list">
+                    <li><span class="check-icon">✓</span> Up to 1,000 transactions/month</li>
+                    <li><span class="check-icon">✓</span> Advanced payment processing</li>
+                    <li><span class="check-icon">✓</span> Priority support 24/7</li>
+                    <li><span class="check-icon">✓</span> Mobile + Desktop apps</li>
+                    <li><span class="check-icon">✓</span> Advanced analytics & reports</li>
+                    <li><span class="check-icon">✓</span> AI-powered fraud protection</li>
+                    <li><span class="check-icon">✓</span> Custom branding options</li>
+                    <li class="disabled"><span class="x-icon">✗</span> Unlimited API calls</li>
+                </ul>
+                
+                <button class="plan-btn btn-primary">Choose Professional</button>
+                <p class="plan-footer">14-day free trial</p>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="pricing-card" data-plan="enterprise">
+                <div class="card-glow"></div>
+                <div class="plan-header">
+                    <h3 class="plan-name">Enterprise</h3>
+                    <p class="plan-description">For large organizations</p>
+                    <div class="plan-price">
+                        <span class="currency">$</span>
+                        <span class="price monthly-price">99</span>
+                        <span class="price yearly-price" style="display:none">79</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="price-note monthly-note">Billed monthly</p>
+                    <p class="price-note yearly-note" style="display:none">$948/year (Save $240)</p>
+                </div>
+                
+                <ul class="features-list">
+                    <li><span class="check-icon">✓</span> Unlimited transactions</li>
+                    <li><span class="check-icon">✓</span> Enterprise payment features</li>
+                    <li><span class="check-icon">✓</span> Dedicated account manager</li>
+                    <li><span class="check-icon">✓</span> All platform access</li>
+                    <li><span class="check-icon">✓</span> Custom analytics dashboard</li>
+                    <li><span class="check-icon">✓</span> Advanced fraud protection</li>
+                    <li><span class="check-icon">✓</span> White-label solution</li>
+                    <li><span class="check-icon">✓</span> Unlimited API access</li>
+                </ul>
+                
+                <button class="plan-btn btn-secondary">Choose Enterprise</button>
+                <p class="plan-footer">Custom onboarding included</p>
+            </div>
+        </div>
+
+        <!-- Custom Plan CTA -->
+        <div class="custom-plan-section">
+            <div class="custom-plan-content">
+                <div class="custom-icon">🎯</div>
+                <div class="custom-text">
+                    <h2>Need a Custom Plan?</h2>
+                    <p>We offer flexible pricing for businesses with unique requirements</p>
+                </div>
+                <button class="btn-contact-sales">
+                    <span>Contact Sales</span>
+                    <span class="arrow">→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Feature Comparison -->
+        <div class="comparison-section">
+            <h2 class="section-title">Detailed Feature Comparison</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>Starter</th>
+                            <th class="featured-col">Professional</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-name">Monthly Transactions</td>
+                            <td>100</td>
+                            <td class="featured-col">1,000</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Transaction Fee</td>
+                            <td>2.9% + $0.30</td>
+                            <td class="featured-col">2.5% + $0.25</td>
+                            <td>Custom rates</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Supported Cards</td>
+                            <td>Major cards</td>
+                            <td class="featured-col">All cards</td>
+                            <td>All cards + Crypto</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Payout Speed</td>
+                            <td>3-5 days</td>
+                            <td class="featured-col">1-2 days</td>
+                            <td>Instant</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Support</td>
+                            <td>Email</td>
+                            <td class="featured-col">24/7 Priority</td>
+                            <td>Dedicated Manager</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">API Access</td>
+                            <td><span class="icon-no">✗</span></td>
+                            <td class="featured-col">1,000 calls/day</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Custom Branding</td>
+                            <td><span class="icon-no">✗</span></td>
+                            <td class="featured-col"><span class="icon-yes">✓</span></td>
+                            <td><span class="icon-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Multi-currency</td>
+                            <td><span class="icon-no">✗</span></td>
+                            <td class="featured-col">10 currencies</td>
+                            <td>All currencies</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="trust-section">
+            <div class="trust-content">
+                <div class="trust-item">
+                    <div class="trust-icon">🏆</div>
+                    <h3>99.99% Uptime</h3>
+                    <p>Industry-leading reliability</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🛡️</div>
+                    <h3>PCI DSS Level 1</h3>
+                    <p>Highest security standard</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">⚡</div>
+                    <h3>50ms Response</h3>
+                    <p>Lightning-fast processing</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🌍</div>
+                    <h3>135+ Countries</h3>
+                    <p>Global payment coverage</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What payment methods are supported?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We support all major credit and debit cards (Visa, Mastercard, American Express, Discover), 
+                        digital wallets (Apple Pay, Google Pay, PayPal), and bank transfers. Enterprise plans also 
+                        support cryptocurrency payments.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I change my plan anytime?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! You can upgrade or downgrade your plan at any time. When upgrading, you'll be 
+                        charged the prorated amount immediately. When downgrading, the change takes effect at 
+                        the next billing cycle.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Is there a setup fee?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No setup fees! All plans are free to start. Enterprise customers receive complimentary 
+                        white-glove onboarding and integration support at no additional cost.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What happens if I exceed my transaction limit?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We'll notify you when you're approaching your limit. You can either upgrade your plan 
+                        or pay $0.10 per additional transaction. Your service will never be interrupted.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you offer refunds?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day money-back guarantee for all paid plans. If you're not satisfied, 
+                        contact our support team for a full refund, no questions asked.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How secure is PayFlow?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>PayFlow is PCI DSS Level 1 certified, uses 256-bit SSL encryption, and implements 
+                        advanced fraud detection. We maintain SOC 2 Type II compliance and undergo regular 
+                        third-party security audits.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Payment Experience?</h2>
+                <p>Join 50,000+ businesses already using PayFlow</p>
+                <div class="cta-buttons">
+                    <button class="btn-start-free">Start Free Trial</button>
+                    <button class="btn-schedule-demo">Schedule Demo</button>
+                </div>
+                <p class="cta-note">No credit card required • Setup in 5 minutes</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 PayFlow. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#support">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="pricing.js"></script>
+</body>
+</html>

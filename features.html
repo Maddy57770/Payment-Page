@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - PayFlow</title>
+    <link rel="stylesheet" href="features.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <canvas id="particleCanvas"></canvas>
+        <div class="gradient-overlay"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo" onclick="window.location.href='index.html'">
+                <div class="logo-icon">💳</div>
+                PayFlow
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="#" class="active">Features</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="history.html">History</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="#" class="active">Features</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="history.html">History</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="features-hero">
+            <div class="hero-badge">🚀 POWERFUL FEATURES</div>
+            <h1 class="hero-title">Everything You Need to<br><span class="gradient-text">Accept Payments</span></h1>
+            <p class="hero-subtitle">
+                Discover the complete suite of tools and features that make PayFlow 
+                the most powerful payment platform for modern businesses
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" data-target="99.99">0</span>%
+                    <span class="stat-label">Uptime</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="50">0</span>ms
+                    <span class="stat-label">Response Time</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="135">0</span>+
+                    <span class="stat-label">Countries</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="45">0</span>+
+                    <span class="stat-label">Currencies</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Categories -->
+        <div class="feature-categories">
+            <button class="category-btn active" onclick="filterFeatures('all')">
+                <span class="category-icon">🎯</span>
+                All Features
+            </button>
+            <button class="category-btn" onclick="filterFeatures('payments')">
+                <span class="category-icon">💳</span>
+                Payments
+            </button>
+            <button class="category-btn" onclick="filterFeatures('security')">
+                <span class="category-icon">🔒</span>
+                Security
+            </button>
+            <button class="category-btn" onclick="filterFeatures('analytics')">
+                <span class="category-icon">📊</span>
+                Analytics
+            </button>
+            <button class="category-btn" onclick="filterFeatures('integration')">
+                <span class="category-icon">🔗</span>
+                Integration
+            </button>
+            <button class="category-btn" onclick="filterFeatures('global')">
+                <span class="category-icon">🌍</span>
+                Global
+            </button>
+        </div>
+
+        <!-- Main Features Grid -->
+        <div class="features-grid" id="featuresGrid">
+            <!-- Payments Features -->
+            <div class="feature-card" data-category="payments" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">⚡</span>
+                </div>
+                <h3>Instant Payments</h3>
+                <p>Process payments in real-time with our lightning-fast infrastructure. Transactions complete in under 3 seconds.</p>
+                <ul class="feature-list">
+                    <li>Real-time processing</li>
+                    <li>Instant confirmation</li>
+                    <li>Auto-retry logic</li>
+                </ul>
+                <div class="feature-tag">Popular</div>
+            </div>
+
+            <div class="feature-card" data-category="payments" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">🔄</span>
+                </div>
+                <h3>Recurring Billing</h3>
+                <p>Set up subscription payments with flexible billing cycles and automated invoice generation.</p>
+                <ul class="feature-list">
+                    <li>Flexible billing cycles</li>
+                    <li>Automated invoicing</li>
+                    <li>Dunning management</li>
+                </ul>
+            </div>
+
+            <div class="feature-card" data-category="payments" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">📱</span>
+                </div>
+                <h3>Mobile Payments</h3>
+                <p>Accept payments on any device with our mobile-optimized checkout and native SDKs.</p>
+                <ul class="feature-list">
+                    <li>Apple Pay & Google Pay</li>
+                    <li>QR code payments</li>
+                    <li>In-app purchases</li>
+                </ul>
+            </div>
+
+            <!-- Security Features -->
+            <div class="feature-card" data-category="security" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">🛡️</span>
+                </div>
+                <h3>Advanced Fraud Protection</h3>
+                <p>AI-powered fraud detection that learns from millions of transactions to keep you safe.</p>
+                <ul class="feature-list">
+                    <li>Machine learning detection</li>
+                    <li>3D Secure authentication</li>
+                    <li>Risk scoring</li>
+                </ul>
+                <div class="feature-tag">Essential</div>
+            </div>
+
+            <div class="feature-card" data-category="security" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">🔐</span>
+                </div>
+                <h3>PCI DSS Level 1</h3>
+                <p>Highest level of payment security certification with end-to-end encryption.</p>
+                <ul class="feature-list">
+                    <li>256-bit SSL encryption</li>
+                    <li>Tokenization</li>
+                    <li>Secure vault storage</li>
+                </ul>
+            </div>
+
+            <div class="feature-card" data-category="security" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">👤</span>
+                </div>
+                <h3>Identity Verification</h3>
+                <p>KYC/AML compliance with automated identity verification and document checking.</p>
+                <ul class="feature-list">
+                    <li>Document verification</li>
+                    <li>Biometric authentication</li>
+                    <li>Compliance reporting</li>
+                </ul>
+            </div>
+
+            <!-- Analytics Features -->
+            <div class="feature-card" data-category="analytics" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">📊</span>
+                </div>
+                <h3>Real-time Analytics</h3>
+                <p>Comprehensive dashboards with real-time insights into your payment performance.</p>
+                <ul class="feature-list">
+                    <li>Live transaction monitoring</li>
+                    <li>Custom reports</li>
+                    <li>Export capabilities</li>
+                </ul>
+            </div>
+
+            <div class="feature-card" data-category="analytics" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">📈</span>
+                </div>
+                <h3>Revenue Optimization</h3>
+                <p>AI-driven insights to maximize approval rates and reduce false declines.</p>
+                <ul class="feature-list">
+                    <li>Conversion tracking</li>
+                    <li>A/B testing tools</li>
+                    <li>Revenue forecasting</li>
+                </ul>
+            </div>
+
+            <div class="feature-card" data-category="analytics" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">🎯</span>
+                </div>
+                <h3>Customer Insights</h3>
+                <p>Deep customer analytics to understand buying patterns and behavior.</p>
+                <ul class="feature-list">
+                    <li>Customer segmentation</li>
+                    <li>Lifetime value tracking</li>
+                    <li>Churn prediction</li>
+                </ul>
+            </div>
+
+            <!-- Integration Features -->
+            <div class="feature-card" data-category="integration" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">🔌</span>
+                </div>
+                <h3>API & Webhooks</h3>
+                <p>RESTful APIs and real-time webhooks for seamless integration with your systems.</p>
+                <ul class="feature-list">
+                    <li>RESTful API</li>
+                    <li>GraphQL support</li>
+                    <li>Real-time webhooks</li>
+                </ul>
+                <div class="feature-tag">Developer Friendly</div>
+            </div>
+
+            <div class="feature-card" data-category="integration" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">🛒</span>
+                </div>
+                <h3>E-commerce Plugins</h3>
+                <p>Pre-built integrations for popular e-commerce platforms and shopping carts.</p>
+                <ul class="feature-list">
+                    <li>Shopify & WooCommerce</li>
+                    <li>Magento & BigCommerce</li>
+                    <li>Custom integrations</li>
+                </ul>
+            </div>
+
+            <div class="feature-card" data-category="integration" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">📲</span>
+                </div>
+                <h3>Mobile SDKs</h3>
+                <p>Native SDKs for iOS and Android with pre-built UI components.</p>
+                <ul class="feature-list">
+                    <li>iOS & Android SDKs</li>
+                    <li>React Native support</li>
+                    <li>Flutter integration</li>
+                </ul>
+            </div>
+
+            <!-- Global Features -->
+            <div class="feature-card" data-category="global" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">🌍</span>
+                </div>
+                <h3>Multi-Currency</h3>
+                <p>Accept payments in 135+ currencies with automatic conversion and settlement.</p>
+                <ul class="feature-list">
+                    <li>135+ currencies</li>
+                    <li>Auto-conversion</li>
+                    <li>Local payment methods</li>
+                </ul>
+            </div>
+
+            <div class="feature-card" data-category="global" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">🌐</span>
+                </div>
+                <h3>Global Coverage</h3>
+                <p>Process payments from customers in 195+ countries with local optimization.</p>
+                <ul class="feature-list">
+                    <li>195+ countries</li>
+                    <li>45+ languages</li>
+                    <li>Local compliance</li>
+                </ul>
+            </div>
+
+            <div class="feature-card" data-category="global" data-aos="fade-up">
+                <div class="feature-icon-wrapper">
+                    <span class="feature-icon">💱</span>
+                </div>
+                <h3>Smart Routing</h3>
+                <p>Intelligent payment routing to maximize success rates globally.</p>
+                <ul class="feature-list">
+                    <li>Dynamic routing</li>
+                    <li>Failover protection</li>
+                    <li>Cost optimization</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Advanced Features Section -->
+        <div class="advanced-features">
+            <h2 class="section-title">Advanced Capabilities</h2>
+            <div class="advanced-grid">
+                <div class="advanced-card">
+                    <div class="advanced-header">
+                        <span class="advanced-icon">🤖</span>
+                        <h3>AI & Machine Learning</h3>
+                    </div>
+                    <p>Leverage artificial intelligence for fraud detection, risk assessment, and payment optimization.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">TensorFlow</span>
+                        <span class="tech-badge">Neural Networks</span>
+                        <span class="tech-badge">Predictive Analytics</span>
+                    </div>
+                </div>
+
+                <div class="advanced-card">
+                    <div class="advanced-header">
+                        <span class="advanced-icon">⚙️</span>
+                        <h3>Automation Engine</h3>
+                    </div>
+                    <p>Automate payment workflows, reconciliation, and reporting with our powerful automation tools.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Workflow Builder</span>
+                        <span class="tech-badge">Auto-reconciliation</span>
+                        <span class="tech-badge">Smart Triggers</span>
+                    </div>
+                </div>
+
+                <div class="advanced-card">
+                    <div class="advanced-header">
+                        <span class="advanced-icon">🔧</span>
+                        <h3>Customization</h3>
+                    </div>
+                    <p>Fully customizable checkout experience with white-label solutions and branded interfaces.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">White Label</span>
+                        <span class="tech-badge">Custom Branding</span>
+                        <span class="tech-badge">Flexible UI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Integration Showcase -->
+        <div class="integration-showcase">
+            <h2 class="section-title">Seamless Integrations</h2>
+            <p class="section-subtitle">Connect PayFlow with your favorite tools and platforms</p>
+            <div class="integration-logos">
+                <div class="logo-item">
+                    <img src="https://img.icons8.com/color/96/000000/shopify.png" alt="Shopify">
+                    <span>Shopify</span>
+                </div>
+                <div class="logo-item">
+                    <img src="https://img.icons8.com/color/96/000000/wordpress.png" alt="WordPress">
+                    <span>WordPress</span>
+                </div>
+                <div class="logo-item">
+                    <img src="https://img.icons8.com/color/96/000000/salesforce.png" alt="Salesforce">
+                    <span>Salesforce</span>
+                </div>
+                <div class="logo-item">
+                    <img src="https://img.icons8.com/color/96/000000/slack.png" alt="Slack">
+                    <span>Slack</span>
+                </div>
+                <div class="logo-item">
+                    <img src="https://img.icons8.com/color/96/000000/quickbooks.png" alt="QuickBooks">
+                    <span>QuickBooks</span>
+                </div>
+                <div class="logo-item">
+                    <img src="https://img.icons8.com/color/96/000000/zapier.png" alt="Zapier">
+                    <span>Zapier</span>
+                </div>
+                <div class="logo-item">
+                    <img src="https://img.icons8.com/color/96/000000/hubspot.png" alt="HubSpot">
+                    <span>HubSpot</span>
+                </div>
+                <div class="logo-item">
+                    <img src="https://img.icons8.com/color/96/000000/stripe.png" alt="More">
+                    <span>500+ More</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="performance-section">
+            <h2 class="section-title">Industry-Leading Performance</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-chart">
+                        <canvas id="uptimeChart"></canvas>
+                    </div>
+                    <h3>99.99% Uptime</h3>
+                    <p>Guaranteed availability with redundant infrastructure</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-chart">
+                        <canvas id="speedChart"></canvas>
+                    </div>
+                    <h3>50ms Response</h3>
+                    <p>Lightning-fast payment processing globally</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-chart">
+                        <canvas id="successChart"></canvas>
+                    </div>
+                    <h3>98% Success Rate</h3>
+                    <p>Industry-best approval rates with smart routing</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-section">
+            <h2 class="section-title">How We Compare</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="payflow-col">
+                                <span class="company-badge">PayFlow</span>
+                            </th>
+                            <th>Competitor A</th>
+                            <th>Competitor B</th>
+                            <th>Competitor C</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-name">Transaction Fee</td>
+                            <td class="payflow-col"><strong>2.5%</strong></td>
+                            <td>2.9%</td>
+                            <td>3.1%</td>
+                            <td>2.8%</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Setup Time</td>
+                            <td class="payflow-col"><strong>5 minutes</strong></td>
+                            <td>2-3 days</td>
+                            <td>1 week</td>
+                            <td>3-5 days</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Global Coverage</td>
+                            <td class="payflow-col"><span class="check">✓</span> 195 countries</td>
+                            <td><span class="check">✓</span> 120 countries</td>
+                            <td><span class="check">✓</span> 85 countries</td>
+                            <td><span class="check">✓</span> 150 countries</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">24/7 Support</td>
+                            <td class="payflow-col"><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">API Rate Limit</td>
+                            <td class="payflow-col"><strong>Unlimited</strong></td>
+                            <td>10,000/day</td>
+                            <td>5,000/day</td>
+                            <td>15,000/day</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Mobile SDKs</td>
+                            <td class="payflow-col"><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Instant Payouts</td>
+                            <td class="payflow-col"><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Free Trial</td>
+                            <td class="payflow-col"><strong>30 days</strong></td>
+                            <td>14 days</td>
+                            <td>7 days</td>
+                            <td>No trial</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Developer Section -->
+        <div class="developer-section">
+            <h2 class="section-title">Built for Developers</h2>
+            <div class="developer-content">
+                <div class="code-preview">
+                    <div class="code-header">
+                        <span class="code-lang">JavaScript</span>
+                        <button class="copy-btn" onclick="copyCode()">📋 Copy</button>
+                    </div>
+                    <pre><code id="codeBlock">// Initialize PayFlow
+const payflow = new PayFlow('pk_live_YOUR_KEY');
+
+// Create payment
+const payment = await payflow.payments.create({
+    amount: 2000,
+    currency: 'USD',
+    payment_method: 'card',
+    description: 'Order #1234',
+    metadata: {
+        order_id: '1234',
+        customer_id: '5678'
+    }
+});
+
+// Handle response
+if (payment.status === 'success') {
+    console.log('Payment successful!', payment.id);
+}</code></pre>
+                </div>
+                <div class="developer-features">
+                    <h3>Developer Resources</h3>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link">
+                            <span class="resource-icon">📚</span>
+                            <span>API Documentation</span>
+                        </a>
+                        <a href="#" class="resource-link">
+                            <span class="resource-icon">🔧</span>
+                            <span>SDKs & Libraries</span>
+                        </a>
+                        <a href="#" class="resource-link">
+                            <span class="resource-icon">💡</span>
+                            <span>Code Examples</span>
+                        </a>
+                        <a href="#" class="resource-link">
+                            <span class="resource-icon">🎓</span>
+                            <span>Tutorials</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials-section">
+            <h2 class="section-title">Trusted by Thousands</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"PayFlow transformed our payment processing. The setup was incredibly easy and the features are exactly what we needed."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Author">
+                        <div>
+                            <strong>John Smith</strong>
+                            <span>CEO, TechStart</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"The fraud protection alone has saved us thousands. Best payment platform we've ever used."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Author">
+                        <div>
+                            <strong>Sarah Johnson</strong>
+                            <span>CFO, E-Shop Pro</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Outstanding API documentation and developer support. Integration was seamless and quick."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Author">
+                        <div>
+                            <strong>Mike Chen</strong>
+                            <span>CTO, DevCorp</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Experience These Features?</h2>
+                <p>Start accepting payments in minutes with PayFlow</p>
+                <div class="cta-buttons">
+                    <button class="btn-primary" onclick="window.location.href='pricing.html'">View Pricing</button>
+                    <button class="btn-secondary" onclick="window.location.href='contact.html'">Request Demo</button>
+                </div>
+                <p class="cta-note">Free 30-day trial • No credit card required</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 PayFlow. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#support">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="features.js"></script>
+</body>
+</html>

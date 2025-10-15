@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - PayFlow</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Map library -->
+    <script src="https://cdn.jsdelivr.net/npm/jsvectormap"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsvectormap/dist/maps/world.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap/dist/css/jsvectormap.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">💳</div>
+                <span>PayFlow</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item active">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="history.html" class="nav-item">
+                <span class="nav-icon">📜</span>
+                <span>Transactions</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon">👥</span>
+                <span>Customers</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon">📄</span>
+                <span>Invoices</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon">📈</span>
+                <span>Reports</span>
+            </a>
+            <a href="pricing.html" class="nav-item">
+                <span class="nav-icon">💎</span>
+                <span>Pricing</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                <div class="user-info">
+                    <span class="user-name">John Doe</span>
+                    <span class="user-plan">Pro Plan</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                <h1>Analytics Dashboard</h1>
+            </div>
+            <div class="topbar-right">
+                <!-- Date Range Picker -->
+                <div class="date-range-picker">
+                    <button class="date-btn active" onclick="changeDateRange('today')">Today</button>
+                    <button class="date-btn" onclick="changeDateRange('week')">Week</button>
+                    <button class="date-btn" onclick="changeDateRange('month')">Month</button>
+                    <button class="date-btn" onclick="changeDateRange('year')">Year</button>
+                    <button class="date-btn custom" onclick="showCustomDatePicker()">
+                        <span>📅</span> Custom
+                    </button>
+                </div>
+                <!-- Notifications -->
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <span>🔔</span>
+                        <span class="notification-badge">5</span>
+                    </button>
+                </div>
+                <!-- Export Button -->
+                <button class="export-btn" onclick="exportDashboard()">
+                    <span>📥</span> Export
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- KPI Cards -->
+            <div class="kpi-section">
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">💰</span>
+                        <span class="kpi-period">vs last period</span>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Total Revenue</h3>
+                        <p class="kpi-value">$<span data-value="254789">254,789</span></p>
+                        <div class="kpi-change positive">
+                            <span class="change-icon">↑</span>
+                            <span>23.5%</span>
+                        </div>
+                    </div>
+                    <div class="kpi-chart">
+                        <canvas id="revenueSparkline"></canvas>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-icon" style="background: linear-gradient(135deg, #48bb78, #38a169);">📈</span>
+                        <span class="kpi-period">vs last period</span>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Transactions</h3>
+                        <p class="kpi-value"><span data-value="3467">3,467</span></p>
+                        <div class="kpi-change positive">
+                            <span class="change-icon">↑</span>
+                            <span>18.2%</span>
+                        </div>
+                    </div>
+                    <div class="kpi-chart">
+                        <canvas id="transactionsSparkline"></canvas>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">👥</span>
+                        <span class="kpi-period">vs last period</span>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>New Customers</h3>
+                        <p class="kpi-value"><span data-value="892">892</span></p>
+                        <div class="kpi-change positive">
+                            <span class="change-icon">↑</span>
+                            <span>12.7%</span>
+                        </div>
+                    </div>
+                    <div class="kpi-chart">
+                        <canvas id="customersSparkline"></canvas>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-icon" style="background: linear-gradient(135deg, #ffd93d, #ff6b6b);">💳</span>
+                        <span class="kpi-period">vs last period</span>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Avg Transaction</h3>
+                        <p class="kpi-value">$<span data-value="73.52">73.52</span></p>
+                        <div class="kpi-change negative">
+                            <span class="change-icon">↓</span>
+                            <span>5.3%</span>
+                        </div>
+                    </div>
+                    <div class="kpi-chart">
+                        <canvas id="avgSparkline"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <!-- Revenue Chart -->
+                <div class="chart-card large">
+                    <div class="chart-header">
+                        <h3>Revenue Overview</h3>
+                        <div class="chart-controls">
+                            <select id="revenueChartType" onchange="updateRevenueChart()">
+                                <option value="line">Line Chart</option>
+                                <option value="bar">Bar Chart</option>
+                                <option value="area">Area Chart</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Transaction Volume Chart -->
+                <div class="chart-card medium">
+                    <div class="chart-header">
+                        <h3>Transaction Volume</h3>
+                        <span class="chart-subtitle">Last 7 days</span>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="volumeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Payment Methods Pie Chart -->
+                <div class="chart-card small">
+                    <div class="chart-header">
+                        <h3>Payment Methods</h3>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="paymentMethodsChart"></canvas>
+                    </div>
+                    <div class="chart-legend" id="paymentMethodsLegend"></div>
+                </div>
+
+                <!-- Success Rate Chart -->
+                <div class="chart-card small">
+                    <div class="chart-header">
+                        <h3>Success Rate</h3>
+                    </div>
+                    <div class="chart-body">
+                        <div class="success-rate-display">
+                            <div class="rate-circle">
+                                <canvas id="successRateChart"></canvas>
+                                <div class="rate-text">
+                                    <span class="rate-value">96.8%</span>
+                                    <span class="rate-label">Success</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rate-stats">
+                            <div class="stat-item">
+                                <span class="stat-dot success"></span>
+                                <span>Successful: 3,354</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-dot failed"></span>
+                                <span>Failed: 113</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Geographic Distribution -->
+            <div class="map-section">
+                <div class="map-card">
+                    <div class="map-header">
+                        <h3>Geographic Distribution</h3>
+                        <div class="map-controls">
+                            <button class="map-btn active">Revenue</button>
+                            <button class="map-btn">Customers</button>
+                            <button class="map-btn">Transactions</button>
+                        </div>
+                    </div>
+                    <div class="map-body">
+                        <div id="worldMap"></div>
+                    </div>
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #e3f2fd;"></span>
+                            <span>$0 - $10k</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #90caf9;"></span>
+                            <span>$10k - $50k</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #42a5f5;"></span>
+                            <span>$50k - $100k</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #1976d2;"></span>
+                            <span>$100k+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tables Section -->
+            <div class="tables-section">
+                <!-- Top Customers -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3>Top Customers</h3>
+                        <a href="#" class="view-all">View All →</a>
+                    </div>
+                    <div class="table-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Transactions</th>
+                                    <th>Total Spent</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Customer">
+                                            <span>Tech Solutions Inc</span>
+                                        </div>
+                                    </td>
+                                    <td>147</td>
+                                    <td class="amount">$28,439</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Customer">
+                                            <span>Digital Marketing Pro</span>
+                                        </div>
+                                    </td>
+                                    <td>98</td>
+                                    <td class="amount">$21,847</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Customer">
+                                            <span>E-Commerce Plus</span>
+                                        </div>
+                                    </td>
+                                    <td>89</td>
+                                    <td class="amount">$18,923</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Customer">
+                                            <span>Cloud Services Ltd</span>
+                                        </div>
+                                    </td>
+                                    <td>76</td>
+                                    <td class="amount">$16,782</td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Customer">
+                                            <span>Software House</span>
+                                        </div>
+                                    </td>
+                                    <td>64</td>
+                                    <td class="amount">$14,291</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3>Recent Transactions</h3>
+                        <a href="history.html" class="view-all">View All →</a>
+                    </div>
+                    <div class="table-body">
+                        <div class="transaction-list">
+                            <div class="transaction-item">
+                                <div class="transaction-icon success">
+                                    <span>✓</span>
+                                </div>
+                                <div class="transaction-details">
+                                    <span class="transaction-id">TXN2024010501</span>
+                                    <span class="transaction-time">2 minutes ago</span>
+                                </div>
+                                <div class="transaction-amount positive">+$1,247.00</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-icon success">
+                                    <span>✓</span>
+                                </div>
+                                <div class="transaction-details">
+                                    <span class="transaction-id">TXN2024010502</span>
+                                    <span class="transaction-time">5 minutes ago</span>
+                                </div>
+                                <div class="transaction-amount positive">+$892.50</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-icon failed">
+                                    <span>✗</span>
+                                </div>
+                                <div class="transaction-details">
+                                    <span class="transaction-id">TXN2024010503</span>
+                                    <span class="transaction-time">12 minutes ago</span>
+                                </div>
+                                <div class="transaction-amount negative">-$445.00</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-icon success">
+                                    <span>✓</span>
+                                </div>
+                                <div class="transaction-details">
+                                    <span class="transaction-id">TXN2024010504</span>
+                                    <span class="transaction-time">18 minutes ago</span>
+                                </div>
+                                <div class="transaction-amount positive">+$2,183.75</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-icon pending">
+                                    <span>⏳</span>
+                                </div>
+                                <div class="transaction-details">
+                                    <span class="transaction-id">TXN2024010505</span>
+                                    <span class="transaction-time">25 minutes ago</span>
+                                </div>
+                                <div class="transaction-amount pending">$567.30</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="metrics-section">
+                <div class="metrics-card">
+                    <h3>Performance Metrics</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-item">
+                            <span class="metric-label">Conversion Rate</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: 78%"></div>
+                            </div>
+                            <span class="metric-value">78%</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Cart Abandonment</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill warning" style="width: 32%"></div>
+                            </div>
+                            <span class="metric-value">32%</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Customer Retention</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: 85%"></div>
+                            </div>
+                            <span class="metric-value">85%</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Chargeback Rate</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill danger" style="width: 2.3%"></div>
+                            </div>
+                            <span class="metric-value">2.3%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="action-btn">
+                    <span class="action-icon">📊</span>
+                    <span>Generate Report</span>
+                </button>
+                <button class="action-btn">
+                    <span class="action-icon">📧</span>
+                    <span>Email Summary</span>
+                </button>
+                <button class="action-btn">
+                    <span class="action-icon">🔔</span>
+                    <span>Set Alert</span>
+                </button>
+                <button class="action-btn">
+                    <span class="action-icon">⚙️</span>
+                    <span>Configure</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Activity Feed (Floating) -->
+    <div class="activity-feed">
+        <div class="feed-header">
+            <h4>Live Activity</h4>
+            <button class="feed-toggle" onclick="toggleActivityFeed()">−</button>
+        </div>
+        <div class="feed-body" id="activityFeed">
+            <!-- Dynamic activity items will be added here -->
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
